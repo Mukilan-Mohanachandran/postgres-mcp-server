@@ -1,0 +1,22 @@
+[
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "9876543210",
+    "address": "123 Main Street",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "postal_code": "600001"
+  },
+  {
+    "first_name": "Priya",
+    "last_name": "Kumar",
+    "email": "priya.kumar@example.com",
+    "phone": "9876501234",
+    "address": "45 MG Road",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "postal_code": "560001"
+  }
+]
