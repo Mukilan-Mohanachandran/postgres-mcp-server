@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: psql_mcp_test
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./sql/init_test_db.sql:/docker-entrypoint-initdb.d/01_init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d psql_mcp_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mcp:
+    build: .
+    environment:
+      DATABASE_URI: postgresql://postgres:postgres@postgres:5432/psql_mcp_test
+      ACCESS_MODE: restricted
+      ALLOWED_SCHEMAS: public
+      TRANSPORT: streamable-http
+      STREAMABLE_HTTP_HOST: 0.0.0.0
+      STREAMABLE_HTTP_PORT: 8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles:
+      - full

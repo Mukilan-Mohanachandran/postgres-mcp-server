@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "custom-psql": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "C:\\Users\\mukil\\Desktop\\custom-psql-mcp-server",
+        "psql-mcp",
+        "--access-mode=restricted"
+      ],
+      "env": {
+        "DATABASE_URI": "${env:DATABASE_URI}",
+        "ALLOWED_SCHEMAS": "public",
+        "ACCESS_MODE": "restricted"
+      }
+    }
+  }
+}
